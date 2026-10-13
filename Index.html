@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketSmart AI — Smart Budget Assistant</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">₹</span><div><strong>PocketSmart AI</strong><small>Smart Budget & Recommendation Assistant</small></div></div>
+    <button id="clearAll" class="ghost danger">Clear Data</button>
+  </header>
 
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE DASHBOARD</p>
+        <h1>Make every rupee count.</h1>
+        <p>Track your money, understand your spending and get simple smart recommendations.</p>
+      </div>
+      <div class="month-card">
+        <label for="monthPicker">Month</label>
+        <input id="monthPicker" type="month">
+      </div>
+    </section>
+
+    <section class="cards">
+      <article class="stat"><span>Total Income</span><strong id="incomeTotal">₹0</strong><small>Money added this month</small></article>
+      <article class="stat"><span>Total Expenses</span><strong id="expenseTotal">₹0</strong><small>Money spent this month</small></article>
+      <article class="stat"><span>Balance</span><strong id="balanceTotal">₹0</strong><small>Income minus expenses</small></article>
+      <article class="stat"><span>Savings Rate</span><strong id="savingRate">0%</strong><small>Estimated monthly savings</small></article>
+    </section>
+
+    <section class="grid">
+      <article class="panel">
+        <div class="panel-head"><h2>Add transaction</h2><span class="pill">Quick entry</span></div>
+        <form id="transactionForm">
+          <div class="form-row">
+            <label>Type<select id="type" required><option value="expense">Expense</option><option value="income">Income</option></select></label>
+            <label>Amount (₹)<input id="amount" type="number" min="1" step="0.01" placeholder="500" required></label>
+          </div>
+          <div class="form-row">
+            <label>Category<select id="category">
+              <option>Food</option><option>Transport</option><option>Shopping</option><option>Education</option>
+              <option>Entertainment</option><option>Bills</option><option>Health</option><option>Other</option>
+            </select></label>
+            <label>Date<input id="date" type="date" required></label>
+          </div>
+          <label>Note<input id="note" type="text" maxlength="80" placeholder="e.g. College bus pass"></label>
+          <button class="primary" type="submit">+ Add Transaction</button>
+        </form>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head"><h2>Smart recommendation</h2><span class="ai-badge">AI</span></div>
+        <div id="recommendation" class="recommendation">
+          <div class="robot">✦</div>
+          <div><strong>Waiting for your data</strong><p>Add income and expenses to receive personalized budget suggestions.</p></div>
+        </div>
+        <div class="budget-box">
+          <label>Monthly budget (₹)<input id="budget" type="number" min="0" step="100" placeholder="10000"></label>
+          <div class="progress"><span id="budgetProgress"></span></div>
+          <small id="budgetText">Set a budget to monitor your spending.</small>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid charts">
+      <article class="panel"><div class="panel-head"><h2>Expense by category</h2></div><div class="chart-wrap"><canvas id="categoryChart"></canvas></div></article>
+      <article class="panel"><div class="panel-head"><h2>Income vs Expense</h2></div><div class="chart-wrap"><canvas id="trendChart"></canvas></div></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Recent transactions</h2><span id="transactionCount" class="pill">0 items</span></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Date</th><th>Type</th><th>Category</th><th>Note</th><th>Amount</th><th></th></tr></thead>
+        <tbody id="transactionTable"></tbody></table>
+        <div id="emptyState" class="empty">No transactions for this month yet.</div>
+      </div>
+    </section>
+
+    <section class="tips">
+      <h2>Smart money tips</h2>
+      <div class="tip-grid">
+        <div><b>50/30/20</b><span>Try needs, wants and savings as a simple starting framework.</span></div>
+        <div><b>Track first</b><span>Record small purchases too—they add up over a month.</span></div>
+        <div><b>Save automatically</b><span>Set aside a small amount when income arrives.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 PocketSmart AI · Built with HTML, CSS & JavaScript · Data stays in your browser.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
